@@ -1,0 +1,17 @@
+---
+- name: wordpres docker container
+  docker_container:
+    name: "{{ wordpress_instance_name }}"
+    image: "wordpress:{{ wordpress_container_version }}"
+    state: started
+    recreate: yes
+    pull: true
+    ports: 8080:8080
+    links: "wordpress_db_{{ wordpress_instance_name }}"
+    volumes:
+    - "{{ wordpress_data }}:/usr/src/wordpress/wp-content"
+    env:
+      WORDPRESS_DB_HOST: "{{ wordpress_db_host }}"
+      WORDPRESS_DB_USER: "{{ wordpress_db_user }}"
+      WORDPRESS_DB_PASSWORD: "{{ wordpress_db_password }}"
+      WORDPRESS_DB_NAME: "{{ wordpress_db_name }}"
