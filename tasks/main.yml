@@ -1,7 +1,7 @@
 ---
 - name: wordpres docker container
   docker_container:
-    name: "{{ wordpress_instance_name }}"
+    name: "wordpress_app_{{ wordpress_instance_name }}"
     image: "wordpress:{{ wordpress_container_version }}"
     state: started
     recreate: yes
